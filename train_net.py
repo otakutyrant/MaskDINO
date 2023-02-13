@@ -65,6 +65,17 @@ from detectron2.engine import (
 )
 import weakref
 
+# register poc datasets
+import poc_dataset
+from detectron2.data import DatasetCatalog
+DatasetCatalog.register('poc_seg_train', poc_dataset.train_dataset_function)
+DatasetCatalog.register('poc_seg_val', poc_dataset.val_dataset_function)
+# update metadata for datasets
+from detectron2.data import MetadataCatalog
+MetadataCatalog.get('poc_seg_train').stuff_classes = [] # TODO
+MetadataCatalog.get('poc_seg_train').evaluator_type = 'sem_seg'
+MetadataCatalog.get('poc_seg_val').stuff_classes = [] # TODO
+MetadataCatalog.get('poc_seg_val').evaluator_type = 'sem_seg'
 
 class Trainer(DefaultTrainer):
     """
