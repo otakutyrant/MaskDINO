@@ -35,7 +35,7 @@ def setup_cfg(args):
     # load config from file and command-line arguments
     cfg = get_cfg()
     add_deeplab_config(cfg)
-    add_maskformer2_config(cfg)
+    add_maskdino_config(cfg)
     cfg.merge_from_file(args.config_file)
     cfg.merge_from_list(args.opts)
     cfg.freeze()
